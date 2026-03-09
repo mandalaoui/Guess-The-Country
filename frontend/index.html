@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess The Country</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Guess The Country</h1>
+    </header>
+    <main>
+        <section id="clues-section">
+            <h2>Clues</h2>
+            <ul id="clues-list">
+                <li>Loading clue 1...</li>
+                <li>Loading clue 2...</li>
+                <li>Loading clue 3...</li>
+            </ul>
+        </section>
+        <form id="guess-form" autocomplete="off">
+            <input 
+                type="text" 
+                id="guess-input" 
+                name="guess" 
+                placeholder="Enter country name" 
+                required
+            >
+            <button type="submit">Submit</button>
+        </form>
+        <div id="result-message"></div>
+        <button id="next-country-btn" type="button" style="margin-bottom:1.1rem;">Next Country</button>
+    </main>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

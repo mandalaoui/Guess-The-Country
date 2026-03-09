@@ -24,7 +24,9 @@ const submitGuess = (req, res) => {
     }
 
     const isCorrect = gameService.checkGuess(guess);
-    res.json({ correct: isCorrect });
+    // Return the correct answer as well
+    const answer = gameService.currentCountry ? gameService.currentCountry.name : null;
+    res.json({ correct: isCorrect, answer });
 };
 
 module.exports = {
