@@ -23,15 +23,41 @@ The focus of the project is **functionality and clean structure**, not complex U
 ## Tech Stack
 
 **Backend**  
+
 - Node.js  
 - Express  
-- CORS
+- CORS  
+- MongoDB Atlas
 
 **Frontend**  
+
 - HTML  
 - Vanilla JavaScript  
 - CSS
 
+**Deployment**  
+
+- Netlify (frontend)  
+- Render (backend)
+
+
+---
+
+## Live Demo
+
+Frontend (Netlify):  
+https://guess-the-country-game.netlify.app/
+
+Backend (Render):  
+https://guess-the-country-jf3f.onrender.com
+
+API Example:  
+https://guess-the-country-jf3f.onrender.com/api/country
+
+Database:  
+MongoDB Atlas
+
+> Note: The backend is deployed on Render free tier, so the first request may take ~30 seconds if the service is sleeping.
 
 ---
 
@@ -47,8 +73,10 @@ guess-the-country/
 │   │   └── gameService.js         # Game logic: country, clues, answer check
 │   ├── routes/
 │   │   └── gameRoutes.js          # API endpoint routes
+│   ├── db/
+│   │   └── mongo.js               # MongoDB connection
 │   ├── data/
-│   │   └── countries.js           # Country list (name + clues)
+│   │   └── countries.js           # Original local dataset used before DB integration
 │   ├── server.js                  # Backend entry point
 │   └── package.json               # Node dependencies
 │
@@ -93,18 +121,6 @@ guess-the-country/
    Open `frontend/index.html` in your browser  
    _or_  
    Use a static server (e.g. [VSCode Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)) to serve the `frontend/` folder.
-
----
-
-## Project Overview
-
-- **Backend**:  
-  - `GET /api/country` — returns three clues for a random country  
-  - `POST /api/guess` — checks if your guess is correct
-
-- **Frontend**:  
-  Fetches clues, lets you submit guesses, and shows answers instantly.  
-  No frameworks—just HTML, CSS, vanilla JS.
 
 ---
 
@@ -163,28 +179,32 @@ Response:
 
 ---
 
-## Country Dataset
+## Country Data
 
-The data lives in:
+The project originally started with a small in-memory dataset in:
 
-```
-backend/data/countries.js
-```
+`backend/data/countries.js`
 
-It's a simple array of 10 country objects. Each includes a name and three clues. Example:
+For the database bonus, the country data was migrated to **MongoDB Atlas**.
 
-```js
+The database contains a simple `countries` collection with 10 country documents.  
+Each document includes:
+
+- `name`
+- `clues`
+
+Example:
+
+```json
 {
-  name: "Japan",
-  clues: [
+  "name": "Japan",
+  "clues": [
     "Land of the Rising Sun",
     "Capital is Tokyo",
     "Known for sushi"
   ]
 }
 ```
-
-The backend uses this to generate clues for every round.
 
 ---
 
@@ -216,6 +236,18 @@ see:
 `AI_USAGE.md`
 
 ---
+
+## Bonus Implementation
+
+This project includes both optional bonus parts:
+
+- **Deployment**
+  - Frontend deployed on Netlify
+  - Backend deployed on Render
+
+- **Database Integration**
+  - Country data is stored in MongoDB Atlas instead of being used only from in-memory storage
+
 
 ## Author
 
