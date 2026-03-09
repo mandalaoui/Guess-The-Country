@@ -1,0 +1,55 @@
+### Health Check
+GET http://localhost:3000/health
+
+###
+
+### Get Random Country Clues
+GET http://localhost:3000/api/country
+
+###
+
+### Submit Guess - Example Guess
+POST http://localhost:3000/api/guess
+Content-Type: application/json
+
+{
+  "guess": "Italy"
+}
+
+###
+
+### Submit Guess - Wrong Guess
+POST http://localhost:3000/api/guess
+Content-Type: application/json
+
+{
+  "guess": "WrongCountry"
+}
+
+###
+
+### Submit Guess - Empty JSON Body
+POST http://localhost:3000/api/guess
+Content-Type: application/json
+
+{}
+
+###
+
+### Submit Guess - Missing guess Field
+POST http://localhost:3000/api/guess
+Content-Type: application/json
+
+{
+  "somethingElse": "value"
+}
+
+###
+
+### Submit Guess - Non-String Guess
+POST http://localhost:3000/api/guess
+Content-Type: application/json
+
+{
+  "guess": 42
+}
