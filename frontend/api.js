@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/api";
+const BASE_URL = "https://guess-the-country-jf3f.onrender.com/api";
 
 /**
  * Fetch clues for a randomly selected country from the backend.
