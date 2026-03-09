@@ -22,7 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const data = await getCountryClues();
             if (data.clues && Array.isArray(data.clues)) {
-                displayClues(data.clues);
+                cluesList.innerHTML = '';
+                data.clues.forEach((clue, idx) => {
+                    const li = document.createElement('li');
+                    li.textContent = `Clue ${idx + 1}: ${clue}`;
+                    cluesList.appendChild(li);
+                });
             } else {
                 cluesList.innerHTML = '<li>Failed to load clues.</li>';
             }
@@ -41,9 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await submitGuess(guess);
             if (res && typeof res.correct === 'boolean') {
-                resultMessage.textContent = res.correct ? 'Correct!' : 'Wrong.';
-                // Optionally, can reset/load clues for new round if needed:
-                // if (res.correct) await loadClues();
+                if (res.correct) {
+                    resultMessage.textContent = 'Correct!';
+                } else {
+                    resultMessage.textContent = `Wrong. The correct answer is ${res.answer}.`;
+                }
             } else {
                 resultMessage.textContent = 'Unexpected response.';
             }

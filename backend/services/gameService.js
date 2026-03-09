@@ -27,7 +27,17 @@ function checkGuess(userGuess) {
     );
 }
 
+/**
+ * Returns the current country object in memory.
+ * @returns {object|null} The currently selected country or null if none.
+ */
+function getCurrentCountry() {
+    return currentCountry;
+}
+
+
 module.exports = {
     getCountryClues,
     checkGuess,
+    getCurrentCountry
 };

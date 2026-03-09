@@ -23,10 +23,13 @@ const submitGuess = (req, res) => {
         return res.status(400).json({ error: 'Invalid or missing guess.' });
     }
 
+    const currentCountry = gameService.getCurrentCountry();
+    if (!currentCountry) {
+        return res.status(400).json({ error: 'No active country. Please request clues first.' });
+    }
+
     const isCorrect = gameService.checkGuess(guess);
-    // Return the correct answer as well
-    const answer = gameService.currentCountry ? gameService.currentCountry.name : null;
-    res.json({ correct: isCorrect, answer });
+    res.json({ correct: isCorrect, answer: currentCountry.name });
 };
 
 module.exports = {
